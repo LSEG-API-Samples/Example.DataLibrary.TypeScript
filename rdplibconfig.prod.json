@@ -1,0 +1,15 @@
+{
+	"logs": {
+		"level": "warn",
+		"filter": "*",
+		"transports": {
+			"console": {
+				"enabled": true
+			},
+			"file": {
+				"enabled": false,
+				"name": "rdlib"
+			}
+		}
+	}
+}

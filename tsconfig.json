@@ -1,0 +1,16 @@
+{
+	"compilerOptions": {
+		"outDir": "dist",
+		"strict": true,
+		"esModuleInterop": true,
+		"noEmitOnError": true,
+		"noImplicitAny": true,
+		"resolveJsonModule": true,
+		"sourceMap": true
+	},
+	"exclude": [
+		"node_modules",
+		"**/node_modules/*"
+	],
+	"include": ["src/**/*"],
+}

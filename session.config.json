@@ -1,0 +1,19 @@
+{
+	"sessions": {
+		"default": "platform",
+
+		"platform": {
+			"rdpUser": "<RDP Machine ID>",
+			"rdpPassword": "<RDP Password>",
+			"appKey": "<RDP Application Key>"
+		},
+
+		"desktop": {
+			"appKey": "<Desktop Application Key>"
+		},
+
+		"container": {
+			"appKey": "<Application Key>"
+		}
+	}
+}
