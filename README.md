@@ -14,3 +14,5 @@ The Content examples target higher-level abstractions representing financial ite
 ## Delivery
 
 The Delivery examples target the interfaces defined within the lowest abstraction layer of the library. The examples provide core level services including logging and WebSocket customization. In addition, different delivery service examples such as Request/Reply data endpoints, real-time streaming and interfaces supporting queuing capabilities offered for news headlines, stories and research message services.
+
+Please see [Refinitiv Developers Community](https://developers.refinitiv.com/) for step by step tutorials on how to use these samples.
