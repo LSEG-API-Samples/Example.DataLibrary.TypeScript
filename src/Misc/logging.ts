@@ -21,6 +21,9 @@ logger.setLevel(logger.levels.DEBUG);
 logger.enableAll();
 // logger.disableAll();
 
+// send a custom warning message
+logger.warn('This is a WARNING message');
+// logger.info('This is an INFO message');
 
 
 const session = getSession();
