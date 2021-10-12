@@ -7,7 +7,7 @@
 //
 // Note: To configure settings for your environment, modify the session.config json file 
 // **********************************************************************************************************************
-import { Delivery, Session } from '@refinitiv-data/data';
+import { Delivery, News } from '@refinitiv-data/data';
 import { getSession } from '../../Common/session';
 
 const session = getSession();
@@ -26,11 +26,20 @@ const session = getSession();
 		};
 
 		const def = Delivery.EndpointRequest.Definition(param);
-		const response = await def.getData(session);
-		console.log('Received data:', JSON.stringify(response.data, null, ' '));
+		const response = await def.getData(session) as any;
+		console.log('Headlines received, getting stories');
 
-		// console.log(response.data.data[0].storyId);
-
+		const storyIds = response.data.data.map((story: any) => story.storyId);
+		const stories = storyIds.map((storyId: any) => {
+			const definition = News.Story.Definition({
+				storyId,
+			});
+			return definition.getData(session);
+		});
+		
+		const result = await Promise.all(stories);
+		console.log('Stories received:');
+		console.log(result);
 	} 
 	catch (err) {
 		console.log(err);
