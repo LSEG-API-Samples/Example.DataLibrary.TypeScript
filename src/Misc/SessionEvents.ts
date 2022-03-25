@@ -27,8 +27,8 @@ session.on(Session.Event.Error, err => console.log('Error in session', err));
 		// HTTP-GET endpoint request
 		const params: Delivery.EndpointRequestDefinitionParams = {
 			url: 'data/historical-pricing/v1/views/events/{universe}',
-			path: { universe: 'VOD.L' },
-			query: { 'count': '5' },
+			pathParameters: { universe: 'VOD.L' },
+			queryParameters: { 'count': '5' },
 		};
 
 		const def = Delivery.EndpointRequest.Definition(params);

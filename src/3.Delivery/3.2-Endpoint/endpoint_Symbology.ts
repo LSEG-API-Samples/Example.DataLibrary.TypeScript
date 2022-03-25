@@ -22,7 +22,7 @@ const session = getSession();
 		// HTTP-POST endpoint request
 		const params: Delivery.EndpointRequestDefinitionParams = {
 			url: 'discovery/symbology/v1/lookup',
-			body: {
+			bodyParameters: {
 				from: [{'identifierTypes': ['RIC'], 'values': ['MSFT.O']}],
 				to: [{
 					'identifierTypes': ["ISIN", "LEI", "ExchangeTicker"] 

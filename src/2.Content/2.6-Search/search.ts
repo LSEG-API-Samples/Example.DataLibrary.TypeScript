@@ -37,17 +37,17 @@ const session = getSession();
 		});
 
 		// search for IBM bonds - filter specific criteria
-		// await displaySearchResponse(`\nIBM Bonds - Active bonds that have not matured`, {
-		//	   view: Search.View.GovCorpInstruments,
-		//	   filter: `IssuerTicker eq 'IBM' and IsActive eq true and AssetStatus ne 'MAT'`,
-		//	   select: ['ISIN','RIC','IssueDate','Currency','FaceIssuedTotal','CouponRate','MaturityDate']
-		// });
+		await displaySearchResponse(`\nIBM Bonds - Active bonds that have not matured`, {
+		   view: Search.View.GovCorpInstruments,
+		   filter: `IssuerTicker eq 'IBM' and IsActive eq true and AssetStatus ne 'MAT'`,
+		   select: ['ISIN','RIC','IssueDate','Currency','FaceIssuedTotal','CouponRate','MaturityDate']
+		});
 
 		// search for all the RICs where 'LSE' is in the name, exclude all derivatives and ensure the state is active (AC)
-		// await displaySearchResponse(`\nActive RICs containing 'LSE', ignoring derivatives`, {
-		//	   view: Search.View.Quotes,
-		//	   filter: `TickerSymbol eq 'LSE' and AssetType ne 'derivative' and AssetState eq 'AC'`
-		// });
+		await displaySearchResponse(`\nActive RICs containing 'LSE', ignoring derivatives`, {
+		   view: Search.View.Quotes,
+		   filter: `TickerSymbol eq 'LSE' and AssetType ne 'derivative' and AssetState eq 'AC'`
+		});
 
 		// search for Top CEOs where apple appears in the document - Display DocumentTitle and its subtype/components.
 		await displaySearchResponse(`\nTop 3 results for CEOs related with the term 'Apple':`, {
@@ -58,13 +58,13 @@ const session = getSession();
 		});
 
 		// Oil refineries in Venezula, Especially ones that arzen't currently operational (Boost plant status)
-		// await displaySearchResponse(`\nListing of Oil refineries in Venezula, especially ones that aren't currently operational:`, {
-		//	   view: Search.View.PhysicalAssets,
-		//	   filter: `RCSAssetTypeLeaf eq 'oil refinery' and RCSRegionLeaf eq 'Venezuela'`,
-		//	   boost: `PlantStatus ne 'Normal Operation'`,
-		//	   select: ['DocumentTitle', 'PlantStatus'], 
-		//	   top: 100
-		// });
+		await displaySearchResponse(`\nListing of Oil refineries in Venezula, especially ones that aren't currently operational:`, {
+		   view: Search.View.PhysicalAssets,
+		   filter: `RCSAssetTypeLeaf eq 'oil refinery' and RCSRegionLeaf eq 'Venezuela'`,
+		   boost: `PlantStatus ne 'Normal Operation'`,
+		   select: ['DocumentTitle', 'PlantStatus'], 
+		   top: 100
+		});
 
 		// the youngest CEO's
 		await displaySearchResponse(`\nThe youngest CEO's:`, {
@@ -75,11 +75,11 @@ const session = getSession();
 		});
 
 		// top currencies for Gov Corp Bonds
-		// await displaySearchResponse(`\nTop Currencies for Gov Corp Bonds, ranked by Total Outstanding value, along with maximum coupon of each:`, {
-		//	   view: Search.View.GovCorpInstruments,
-		//	   top: 0,
-		//	   navigators: 'Currency(buckets:5,desc:sum_FaceOutstandingUSD,calc:max_CouponRate)'
-		// });
+		await displaySearchResponse(`\nTop Currencies for Gov Corp Bonds, ranked by Total Outstanding value, along with maximum coupon of each:`, {
+		   view: Search.View.GovCorpInstruments,
+		   top: 0,
+		   navigators: 'Currency(buckets:5,desc:sum_FaceOutstandingUSD,calc:max_CouponRate)'
+		});
 
 		// top 2 rate indicators for each central bank
 		await displaySearchResponse(`\nTop 2 rate indicators for each central bank`, {
@@ -91,13 +91,13 @@ const session = getSession();
 		});
 
 		// top 10 Gov Corp instruments for specific range of coupon rates and ratings.	Note: "_" in Select means to include default fields.
-		// const fil = `CouponRate gt 4 and RatingsScope(RatingType eq 'FSU' and CurrentRatingRank gt 15) and AssetState eq 'AC'`;
-		// await displaySearchResponse(``, {
-		//	   view: Search.View.GovCorpInstruments,
-		//	   top: 10,
-		//	   filter: fil,
-		//	   select: ['_', `RatingsScope(filter:((RatingType xeq 'FSU')))`, 'RatingX1XRatingRank']
-		// });
+		const fil = `CouponRate gt 4 and RatingsScope(RatingType eq 'FSU' and CurrentRatingRank gt 15) and AssetState eq 'AC'`;
+		await displaySearchResponse(`\nTop 10 Gov Corp instruments for specific range of coupon rates and ratings`, {
+		   view: Search.View.GovCorpInstruments,
+		   top: 10,
+		   filter: fil,
+		   select: ['_', `RatingsScope(filter:((RatingType xeq 'FSU')))`, 'RatingX1XRatingRank']
+		});
 
 	}
 	catch (err) {

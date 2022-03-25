@@ -22,7 +22,7 @@ const session = getSession();
 		// HTTP-POST endpoint request
 		const params: Delivery.EndpointRequestDefinitionParams = {
 			url: 'data/datagrid/beta1/',
-			body: {
+			bodyParameters: {
 				'universe': ['TRI.N', 'IBM.N'],
 				'fields': ['TR.Revenue', 'TR.GrossProfit']
 			},
