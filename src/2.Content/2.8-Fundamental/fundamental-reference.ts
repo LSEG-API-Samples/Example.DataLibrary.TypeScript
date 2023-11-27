@@ -25,9 +25,6 @@ const session = getSession();
 			universe: ['IBM', 'GOOGL.O', 'MSFT.O'],
 			fields: ['TR.PriceClose', 'TR.Volume', 'TR.PriceLow'],
 			parameters: { SDate: '0CY', Scale: 6 },
-			extendedParams: {
-				fields: ['TR.PriceClose', 'TR.Volume'],
-			},
 		});
 		const fundAndRefResponse1 = await fundAndRefDefinition1.getData(session);
 		console.log('Data result 1:', fundAndRefResponse1.data.table);

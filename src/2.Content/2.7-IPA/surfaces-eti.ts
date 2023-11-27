@@ -33,7 +33,7 @@ const session = getSession();
 
 		// several Eti instruments in single definition (second parameter - short definition)
 		const multiVSEti = IPA.Surfaces.Definition({
-			definitions: [definition, IPA.Surfaces.Eti.Definition('USD')],
+			definitions: [definition, IPA.Surfaces.Eti.Definition({instrumentCode: 'USD'})],
 			extendedParams: {
 				outputs: [IPA.Surfaces.Eti.Outputs.Description],
 			},

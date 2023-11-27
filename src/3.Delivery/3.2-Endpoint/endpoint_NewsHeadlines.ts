@@ -22,7 +22,7 @@ const session = getSession();
 		// HTTP-GET raw endpoint request
 		const param: Delivery.EndpointRequestDefinitionParams = {
 			url: 'data/news/v1/headlines',
-			queryParameters: { query: 'Adidas and searchIn:HeadlineOnly and L:EN' },
+			queryParameters: { query: 'Audi and searchIn:HeadlineOnly and L:EN' },
 		};
 
 		const def = Delivery.EndpointRequest.Definition(param);

@@ -9,7 +9,9 @@
 // Note: To configure settings for your environment, modify the session.config json file 
 // **********************************************************************************************************************
 
-import { Delivery, Session } from '@refinitiv-data/data';
+import { Delivery } from '@refinitiv-data/data';
+import { OMMRefreshResponse, OMMStatusResponse, OMMStream, OMMUpdateResponse } from '@refinitiv-data/types';
+
 import { getSession } from '../../Common/session';
 
 const session = getSession();
@@ -34,10 +36,10 @@ const session = getSession();
 		}).getStream(session);
 
 		// attach the event listener callbacks
-		stream.on(Delivery.OMMStream.Event.Refresh, (data: Delivery.OMMRefreshResponse) => console.log('Refresh:', data));
-		stream.on(Delivery.OMMStream.Event.Update, (data: Delivery.OMMUpdateResponse) => console.log('Update:', data));
-		stream.on(Delivery.OMMStream.Event.Status, (data: Delivery.OMMStatusResponse) => console.log('Status:', data));
-		stream.on(Delivery.OMMStream.Event.Complete, (stream: Delivery.OMMStream) => console.log('Complete'));
+		stream.on(Delivery.OMMStream.Event.Refresh, (data: OMMRefreshResponse) => console.log('Refresh:', data));
+		stream.on(Delivery.OMMStream.Event.Update, (data: OMMUpdateResponse) => console.log('Update:', data));
+		stream.on(Delivery.OMMStream.Event.Status, (data: OMMStatusResponse) => console.log('Status:', data));
+		stream.on(Delivery.OMMStream.Event.Complete, (stream: OMMStream) => console.log('Complete'));
 		stream.on(Delivery.OMMStream.Event.StateChanged, (stream, state) => console.log('State:', state));
 		stream.on(Delivery.OMMStream.Event.Error, (err: Error) => console.log('Error:', err));
 

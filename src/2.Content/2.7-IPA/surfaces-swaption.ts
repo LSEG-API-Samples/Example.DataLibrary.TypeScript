@@ -34,7 +34,7 @@ const session = getSession();
 
 		// several Swaption instruments in single definition (second parameter - short definition)
 		const multiVSSwaption = IPA.Surfaces.Definition({
-			definitions: [definition, IPA.Surfaces.Swaption.Definition('EUR')],
+			definitions: [definition, IPA.Surfaces.Swaption.Definition({ instrumentCode: 'EUR' })],
 			extendedParams: {
 				outputs: [IPA.Surfaces.Swaption.Outputs.Description],
 			},
