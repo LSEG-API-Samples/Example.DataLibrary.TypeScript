@@ -31,7 +31,7 @@ const session = getSession();
 
 		// several Cap instruments in single definition (second parameter - short definition)
 		const multiVSCap = IPA.Surfaces.Definition({
-			definitions: [definition, IPA.Surfaces.Cap.Definition('USD')],
+			definitions: [definition, IPA.Surfaces.Cap.Definition({ instrumentCode: 'USD' })],
 			extendedParams: {
 				outputs: [IPA.Surfaces.Cap.Outputs.Description],
 			},

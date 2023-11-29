@@ -7,7 +7,7 @@
 //
 // Note: To configure settings for your environment, modify the session.config json file 
 // **********************************************************************************************************************
-import { Delivery, Session } from '@refinitiv-data/data';
+import { Delivery } from '@refinitiv-data/data';
 import { getSession } from '../../Common/session';
 
 const session = getSession();

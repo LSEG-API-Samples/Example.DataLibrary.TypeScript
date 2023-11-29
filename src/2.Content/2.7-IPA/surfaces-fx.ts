@@ -32,7 +32,7 @@ const session = getSession();
 
 		// several Fx instruments in single definition (second parameter - short definition)
 		const multiVSFx = IPA.Surfaces.Definition({
-			definitions: [definition, IPA.Surfaces.Fx.Definition('EURUSD')],
+			definitions: [definition, IPA.Surfaces.Fx.Definition({ fxCrossCode: 'EURUSD' })],
 			extendedParams: {
 				outputs: [IPA.Surfaces.Fx.Outputs.Description],
 			},
