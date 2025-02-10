@@ -4,24 +4,20 @@
 // **********************************************************************************************************************
 // LocalRTDS
 // The following example demonstrates how to open a streaming list of items using the Pricing interface but from a local  
-// Refinitiv Realtime Market Data System (formarly ADS)
+// LSEG Realtime Market Data System (formarly ADS)
 //
 // Note: To configure settings for your environment, modify the session.config json file 
 // **********************************************************************************************************************
 
-import { Pricing } from '@refinitiv-data/data';
-import { Session } from '@refinitiv-data/data';
-
+import { Pricing, Session } from '@lseg-workspace-data/data';
 
 // create a session to connect to the local market data system
 const session = Session.Platform.Definition({
 		appKey: 'NOT_USED',
-		host: 'ADS_HOSTNAME_OR_IP_ADDRESS:15000',
-		dacs: {
-			userName: 'MyDACSUserID',
-			applicationId: '255',
-			position: '127.0.0.1/MY_PC'
-		}
+		deployedPlatformHost: 'ADS_HOSTNAME_OR_IP_ADDRESS:15000',
+		deployedPlatformUsername: 'MyDACSUserID',
+		dacsApplicationId: '255',
+		dacsPosition: '127.0.0.1/MY_PC',
 	}).getSession();
 
 

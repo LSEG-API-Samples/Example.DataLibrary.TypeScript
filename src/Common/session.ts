@@ -1,26 +1,31 @@
 // tslint:disable-next-line: no-implicit-dependencies
-import { Session } from '@refinitiv-data/data';
+import { Session } from '@lseg-workspace-data/data';
 import creds from '../../session.config.json';
 
 
 const createDesktopSession = () =>
 	Session.Desktop.Definition({
 		appKey: creds.sessions.desktop.appKey!,
+		appName: 'MyApp',
 	}).getSession();
 
 
 const createPlatformSession = () =>
 	Session.Platform.Definition({
 		appKey: creds.sessions.platform.appKey!,
-		userName: creds.sessions.platform.rdpUser!,
-		password: creds.sessions.platform.rdpPassword!,
-		takeSignOnControl: true,
+		grant: {
+			userName: creds.sessions.platform.ldpUser!,
+			password: creds.sessions.platform.ldpPassword!,
+			takeSignOnControl: true,
+		},
+		appName: 'MyApp'
 	}).getSession();
 
 
 const createContainerSession = () =>
 	Session.Container.Definition({
 		appKey: creds.sessions.container.appKey!,
+		appName: 'MyApp',
 	}).getSession();
 
 

@@ -3,9 +3,9 @@
 		"default": "platform",
 
 		"platform": {
-			"rdpUser": "<RDP Machine ID>",
-			"rdpPassword": "<RDP Password>",
-			"appKey": "<RDP Application Key>"
+			"ldpUser": "<LDP Machine ID>",
+			"ldpPassword": "<LDP Password>",
+			"appKey": "<LDP Application Key>"
 		},
 
 		"desktop": {

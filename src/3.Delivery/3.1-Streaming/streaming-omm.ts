@@ -1,8 +1,8 @@
 // tslint:disable:no-console
 // tslint:disable-next-line: no-implicit-dependencies
-import { Delivery, Session } from '@refinitiv-data/data';
+import { Delivery, Session } from '@lseg-workspace-data/data';
 
-import { OMMRefreshResponse, OMMStatusResponse, OMMStream, OMMUpdateResponse } from '@refinitiv-data/types';
+import { OMMRefreshResponse, OMMStatusResponse, OMMStream, OMMUpdateResponse } from '@lseg-workspace-data/types';
 import { getSession } from '../../Common/session';
 
 const session = getSession();

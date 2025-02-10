@@ -1,7 +1,7 @@
 // tslint:disable:no-console
 // tslint:disable-next-line: no-implicit-dependencies
 
-import { News } from '@refinitiv-data/data';
+import { News } from '@lseg-workspace-data/data';
 import { getSession } from '../../Common/session';
 
 const session = getSession();

@@ -4,13 +4,13 @@
 // **********************************************************************************************************************
 // streaming-MarketPrice
 // The streaming Market Price example demonstrates how to request streaming market-price (L1) data from a websocket 
-//	connection from the Refinitiv Real-time Optimized
+//	connection from the LSEG Real-time Optimized
 //
 // Note: To configure settings for your environment, modify the session.config json file 
 // **********************************************************************************************************************
 
-import { Delivery } from '@refinitiv-data/data';
-import { OMMRefreshResponse, OMMStatusResponse, OMMStream, OMMUpdateResponse } from '@refinitiv-data/types';
+import { Delivery } from '@lseg-workspace-data/data';
+import { OMMRefreshResponse, OMMStatusResponse, OMMStream, OMMUpdateResponse } from '@lseg-workspace-data/types';
 
 import { getSession } from '../../Common/session';
 

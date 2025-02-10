@@ -1,7 +1,7 @@
 // tslint:disable:no-console
 // tslint:disable-next-line: no-implicit-dependencies
 
-import { News } from '@refinitiv-data/data';
+import { News } from '@lseg-workspace-data/data';
 import { getSession } from '../../Common/session';
 
 const session = getSession();
@@ -14,11 +14,11 @@ const session = getSession();
 		console.log('Session open, sending data request');
 
 		// create a News defination and request 25 headlines. Sample queries:
-		// Top News: [query: 'Refinitiv']
+		// Top News: [query: 'Apple']
 		// News on Apple for last 5 days: [query: 'Apple last 5 days']
 		// News on Apple in a specific date range: [query: 'Apple daterange:2020-06-01,2020-06-07']
 		const definition = News.Headlines.Definition({
-			query: 'Refinitiv',
+			query: 'Apple',
 			sort: News.Headlines.SortDirection.NewToOld,
 			count: 25
 		});

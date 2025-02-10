@@ -3,11 +3,11 @@
 
 // **********************************************************************************************************************
 // endpoint_HistoricalPricing
-// This sample demonstrates how to invoke a REST endpoint at Refinitiv Data Platform
+// This sample demonstrates how to invoke a REST endpoint at LSEG Data Platform
 //
 // Note: To configure settings for your environment, modify the session.config json file 
 // **********************************************************************************************************************
-import { Delivery, Session } from '@refinitiv-data/data';
+import { Delivery, Session } from '@lseg-workspace-data/data';
 import { getSession } from '../../Common/session';
 
 const session = getSession();

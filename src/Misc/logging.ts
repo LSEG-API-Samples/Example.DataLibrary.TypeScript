@@ -3,12 +3,12 @@
 
 // **********************************************************************************************************************
 // logging
-// This sample demonstrates how to set various logging options in code. Logging can also be configured using the rdplibconfig.prod.json file 
+// This sample demonstrates how to set various logging options in code. Logging can also be configured using the lseg-data.config.json file 
 //
 // Note: To configure settings for your environment, modify the session.config json file 
 // **********************************************************************************************************************
 
-import { logger } from '@refinitiv-data/data';
+import { logger } from '@lseg-workspace-data/data';
 import { getSession } from '../Common/session';
 
 // following shows various options that can be used with logger package

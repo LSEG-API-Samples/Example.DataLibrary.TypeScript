@@ -1,8 +1,8 @@
 // tslint:disable:no-console
 // tslint:disable-next-line: no-implicit-dependencies
-import { Delivery, Session, IPA } from '@refinitiv-data/data';
+import { Delivery, Session, IPA } from '@lseg-workspace-data/data';
 
-import { RDPAckResponse, RDPResponseResponse, RDPUpdateResponse } from '@refinitiv-data/types';
+import { RDPAckResponse, RDPResponseResponse, RDPUpdateResponse } from '@lseg-workspace-data/types';
 import { getSession } from '../../Common/session';
 
 const session = getSession();

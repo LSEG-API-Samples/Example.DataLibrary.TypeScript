@@ -8,7 +8,7 @@
 // Note: To configure settings for your environment, modify the session.config json file 
 // **********************************************************************************************************************
 
-import { Search } from '@refinitiv-data/data';
+import { Search } from '@lseg-workspace-data/data';
 import { getSession } from '../../Common/session';
 
 const session = getSession();

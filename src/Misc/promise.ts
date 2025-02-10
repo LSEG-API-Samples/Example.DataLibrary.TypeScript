@@ -8,7 +8,7 @@
 // Note: To configure settings for your environment, modify the session.config json file 
 // **********************************************************************************************************************
 
-import { FundamentalAndReference } from '@refinitiv-data/data';
+import { FundamentalAndReference } from '@lseg-workspace-data/data';
 import { getSession } from '../Common/session';
 
 const session = getSession();

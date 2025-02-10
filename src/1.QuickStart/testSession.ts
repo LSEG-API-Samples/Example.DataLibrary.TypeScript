@@ -1,6 +1,6 @@
 // tslint:disable: no-console
 // tslint:disable-next-line: no-implicit-dependencies
-import { logger } from '@refinitiv-data/data';
+import { logger } from '@lseg-workspace-data/data';
 import { getSession } from '../Common/session';
 // set Debugging=ON for the quick-start test of the session
 logger.setLevel(logger.levels.DEBUG);
