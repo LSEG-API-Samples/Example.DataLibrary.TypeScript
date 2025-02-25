@@ -5,11 +5,14 @@ import { Delivery, Session } from '@lseg-workspace-data/data';
 import { OMMRefreshResponse, OMMStatusResponse, OMMStream, OMMUpdateResponse } from '@lseg-workspace-data/types';
 import { getSession } from '../../Common/session';
 
+const STREAM_ERROR_MESSAGE = 'Stream error.';
+
 const session = getSession();
 
 session.on(Session.Event.StateChanged, (_session, state) => console.log('Session state:', state));
 session.on(Session.Event.EventReceived, (_session, event) => console.log('Authentication event:', event));
 session.on(Session.Event.Error, err => console.log('Session error:', err));
+
 
 (async () => {
     try {
