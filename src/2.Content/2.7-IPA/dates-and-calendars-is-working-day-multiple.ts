@@ -1,6 +1,6 @@
 // tslint:disable: no-console
 // tslint:disable-next-line: no-implicit-dependencies
-import { IPA } from '@lseg-workspace-data/data';
+import { IPA } from '@lsegroup/data';
 import { getSession } from '../../Common/session';
 
 const session = getSession();
@@ -38,7 +38,7 @@ const session = getSession();
 
         const isWorkingDayDefinitions = IPA.DatesAndCalendars.IsWorkingDay.Definitions([isWorkingDayDefinition1, isWorkingDayDefinition2]);
 
-        const response = await isWorkingDayDefinitions.getData();
+        const response = await isWorkingDayDefinitions.getData(session);
 
         console.log('Is Working Day - tag: ', response.data.days[1].tag);
         console.log('Is Working Day - is working day?: ', response.data.days[1].isWorkingDay);

@@ -1,6 +1,6 @@
 // tslint:disable: no-console
 // tslint:disable-next-line: no-implicit-dependencies
-import { IPA } from '@lseg-workspace-data/data';
+import { IPA } from '@lsegroup/data';
 import { getSession } from '../../Common/session';
 
 const session = getSession();
@@ -39,7 +39,7 @@ const session = getSession();
 
         const holidaysDefinitions = IPA.DatesAndCalendars.Holidays.Definitions([holidaysDefinition1, holidaysDefinition2]);
 
-        const response = await holidaysDefinitions.getData();
+        const response = await holidaysDefinitions.getData(session);
 
         console.log('Holidays: ', response.data.holidays);
         // Holiday attributes

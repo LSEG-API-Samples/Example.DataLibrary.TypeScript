@@ -8,7 +8,7 @@
 // Note: To configure settings for your environment, modify the session.config json file 
 // **********************************************************************************************************************
 
-import { SymbolConversion } from '@lseg-workspace-data/data';
+import { SymbolConversion } from '@lsegroup/data';
 import { getSession } from '../../Common/session';
 
 const session = getSession();

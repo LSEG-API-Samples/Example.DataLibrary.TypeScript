@@ -1,6 +1,6 @@
 // tslint:disable: no-console
 // tslint:disable-next-line: no-implicit-dependencies
-import { HistoricalPricing } from '@lseg-workspace-data/data';
+import { HistoricalPricing } from '@lsegroup/data';
 import { getSession } from '../../Common/session';
 
 const session = getSession();
@@ -20,8 +20,8 @@ const session = getSession();
             types: ['TimeZone', 'TradingSessions'],
         });
 
-        const instrumentMetadata1 = await definitionWithTypesOfStringType.getData();
-        const instrumentMetadata2 = await definitionWithTypesOfArrayType.getData();
+        const instrumentMetadata1 = await definitionWithTypesOfStringType.getData(session);
+        const instrumentMetadata2 = await definitionWithTypesOfArrayType.getData(session);
 
         console.log('Instrument metadata data using fields as a string: 1-1', instrumentMetadata1.data.raw);
         console.log('Instrument metadata data using fields as an array: 2-1', instrumentMetadata2.data.raw);

@@ -1,6 +1,6 @@
 // tslint:disable: no-console
 // tslint:disable-next-line: no-implicit-dependencies
-import { IPA } from '@lseg-workspace-data/data';
+import { IPA } from '@lsegroup/data';
 import { getSession } from '../../Common/session';
 
 const session = getSession();
@@ -30,7 +30,7 @@ const session = getSession();
 
         const countPeriodsDefinitions = IPA.DatesAndCalendars.CountPeriods.Definitions([countPeriodsDefinition1, countPeriodsDefinition2]);
 
-        const response = await countPeriodsDefinitions.getData();
+        const response = await countPeriodsDefinitions.getData(session);
 
         console.log('Counted periods tag: ', response.data.countedPeriods[0].tag);
         console.log('Counted periods count of period: ', response.data.countedPeriods[0].count);

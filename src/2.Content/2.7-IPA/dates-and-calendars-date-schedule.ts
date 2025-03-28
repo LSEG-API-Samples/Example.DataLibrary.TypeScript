@@ -1,6 +1,6 @@
 // tslint:disable: no-console
 // tslint:disable-next-line: no-implicit-dependencies
-import { IPA } from '@lseg-workspace-data/data';
+import { IPA } from '@lsegroup/data';
 import { getSession } from '../../Common/session';
 
 const session = getSession();
@@ -20,7 +20,7 @@ const session = getSession();
             }
         });
 
-        const response = await dateScheduleDefinition.getData();
+        const response = await dateScheduleDefinition.getData(session);
 
         console.log('Date schedule - received dates: ', response.data.dates);
         console.log('Raw response: ', response.data.raw);

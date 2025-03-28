@@ -10,7 +10,7 @@
 // Note: To configure settings for your environment, modify the session.config json file 
 // **********************************************************************************************************************
 
-import { Pricing } from '@lseg-workspace-data/data';
+import { Pricing } from '@lsegroup/data';
 import { getSession } from '../../Common/session';
 
 const session = getSession();

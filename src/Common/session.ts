@@ -1,5 +1,5 @@
 // tslint:disable-next-line: no-implicit-dependencies
-import { Session } from '@lseg-workspace-data/data';
+import { Session } from '@lsegroup/data';
 import creds from '../../session.config.json';
 
 

@@ -1,9 +1,9 @@
 // tslint:disable: no-console
 // tslint:disable-next-line: no-implicit-dependencies
-import { logger } from '@lseg-workspace-data/data';
+import { config } from '@lsegroup/data';
 import { getSession } from '../Common/session';
 // set Debugging=ON for the quick-start test of the session
-logger.setLevel(logger.levels.DEBUG);
+config.set('logs.level', 'DEBUG');
 
 // Create a session to connect to either 'platform', 'desktop' or 'container' sources
 // The user credentials to connect to each session type are read from the 'session.config.json' file

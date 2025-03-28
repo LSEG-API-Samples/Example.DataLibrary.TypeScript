@@ -1,6 +1,6 @@
 // tslint:disable:no-console
 // tslint:disable-next-line: no-implicit-dependencies
-import { Delivery, Session } from '@lseg-workspace-data/data';
+import { Delivery, Session } from '@lsegroup/data';
 import { getSession } from '../../Common/session';
 
 const session = getSession();
@@ -19,7 +19,7 @@ session.on(Session.Event.Error, err => console.log(err));
         };
 
         const historicalPricingEventsRequestDefinition = Delivery.EndpointRequest.Definition(historicalPricingRequestParams);
-        const { data } = await historicalPricingEventsRequestDefinition.getData();
+        const { data } = await historicalPricingEventsRequestDefinition.getData(session);
 
         console.log('Received data for Historical Pricing Events:', data);
 
@@ -33,7 +33,7 @@ session.on(Session.Event.Error, err => console.log(err));
         };
 
         const searchRequestDefinition = Delivery.EndpointRequest.Definition(searchRequestParams);
-        const { data: searchData } = await searchRequestDefinition.getData();
+        const { data: searchData } = await searchRequestDefinition.getData(session);
 
         console.log('Received data for Search:', searchData);
     } catch (err) {

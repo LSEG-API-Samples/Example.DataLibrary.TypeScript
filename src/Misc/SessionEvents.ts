@@ -7,7 +7,7 @@
 //
 // Note: To configure settings for your environment, modify the session.config json file 
 // **********************************************************************************************************************
-import { Delivery, Session } from '@lseg-workspace-data/data';
+import { Delivery, Session } from '@lsegroup/data';
 import { getSession } from '../Common/session';
 
 const session = getSession();

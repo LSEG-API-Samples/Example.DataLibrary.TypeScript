@@ -1,6 +1,6 @@
 // tslint:disable: no-console
 // tslint:disable-next-line: no-implicit-dependencies
-import { HistoricalPricing } from '@lseg-workspace-data/data';
+import { HistoricalPricing } from '@lsegroup/data';
 import { getSession } from '../../Common/session';
 
 const session = getSession();
@@ -13,7 +13,7 @@ const session = getSession();
             name: 'VOD.L',
         });
 
-        const partialbarMetadata = await definition.getData();
+        const partialbarMetadata = await definition.getData(session);
 
         console.log('Partialbar metadata result: 1-1', partialbarMetadata.data.raw);
         console.log('Partialbar metadata result: 1-2', partialbarMetadata.data.table);

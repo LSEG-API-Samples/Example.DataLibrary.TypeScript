@@ -9,7 +9,7 @@
 // Note: To configure settings for your environment, modify the session.config json file 
 // **********************************************************************************************************************
 
-import { Pricing, Session } from '@lseg-workspace-data/data';
+import { Pricing, Session } from '@lsegroup/data';
 
 // create a session to connect to the local market data system
 const session = Session.Platform.Definition({

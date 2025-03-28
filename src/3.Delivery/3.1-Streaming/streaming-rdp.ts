@@ -1,8 +1,8 @@
 // tslint:disable:no-console
 // tslint:disable-next-line: no-implicit-dependencies
-import { Delivery, Session, IPA } from '@lseg-workspace-data/data';
+import { Delivery, Session, IPA } from '@lsegroup/data';
 
-import { RDPAckResponse, RDPResponseResponse, RDPUpdateResponse } from '@lseg-workspace-data/types';
+import { RDPAckResponse, RDPResponseResponse, RDPUpdateResponse } from '@lsegroup/data-types';
 import { getSession } from '../../Common/session';
 
 const session = getSession();
@@ -43,7 +43,7 @@ session.on(Session.Event.Error, err => console.log('Session error:', err));
                     RateInfo: 10000,
                 },
             },
-        }).getStream();
+        }).getStream(session);
 
         rdpStreamRBH0.on(Delivery.RDPStream.Event.Response, (data: RDPResponseResponse) => console.log('RBH0 Refresh:', data));
         rdpStreamRBH0.on(Delivery.RDPStream.Event.Update, (data: RDPUpdateResponse) => console.log('RBH0 Update:', data));
@@ -62,7 +62,7 @@ session.on(Session.Event.Error, err => console.log('Session error:', err));
                 },
             },
             parameters: { universeType: 'Symbol' },
-        }).getStream();
+        }).getStream(session);
 
         rdpStreamRBPL.on(Delivery.RDPStream.Event.Response, (data: RDPResponseResponse) => console.log('R.BP.L Response:', data));
         rdpStreamRBPL.on(Delivery.RDPStream.Event.Update, (data: RDPUpdateResponse) => console.log('R.BP.L Update:', data));

@@ -3,27 +3,23 @@
 
 // **********************************************************************************************************************
 // logging
-// This sample demonstrates how to set various logging options in code. Logging can also be configured using the lseg-data.config.json file 
+// Logging can be configured using the lsegroup-data.config.json file 
 //
 // Note: To configure settings for your environment, modify the session.config json file 
 // **********************************************************************************************************************
-
-import { logger } from '@lseg-workspace-data/data';
+import { config } from '@lsegroup/data'
 import { getSession } from '../Common/session';
 
-// following shows various options that can be used with logger package
 
 // change the logging level
-logger.setLevel(logger.levels.DEBUG);
-// logger.setLevel(logger.levels.WARN);
+config.set('logs.level', 'debug');
+// config.set('logs.level', 'warn');
 
-// enable the file and console logger
-logger.enableAll();
-// logger.disableAll();
-
-// send a custom warning message
-logger.warn('This is a WARNING message');
-// logger.info('This is an INFO message');
+// enable/disable file or console logger
+config.set('logs.transports.console.enabled', true);
+// config.set('logs.transports.console.enable', false);
+config.set('logs.transports.file.enabled', true);
+// config.set('logs.transports.file.enable', false);
 
 
 const session = getSession();
