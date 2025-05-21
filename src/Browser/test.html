@@ -99,6 +99,7 @@
 			log("No AppKey provided");
 
 		// create the session object
+		// Only DESKTOP SESSION allowed in a Web Browser
 		session = Session.Desktop.Definition({
 			appKey: ak,
 			appName: 'MyApp',
