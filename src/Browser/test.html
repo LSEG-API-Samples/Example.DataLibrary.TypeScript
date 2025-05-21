@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>LD Library for TypeScript</title>
+	<script src="datalib.js"></script>
+	<style>
+		#log {
+			padding-top: 5px;
+			font-family: Lucida Console;
+			font-size: small;
+			height: 600px;
+			overflow-y: auto;
+			background-color: #EEEEEE;
+		}
+
+		table, th, td {
+			border: 1px solid black;
+			border-collapse: collapse;
+			padding: 2px;
+		}
+	</style>
+</head>
+<body>
+
+<h1>LD Library for TypeScript</h1>
+<ul>
+	<li>Copy the datalib.js from Node package into local directory</li>
+	<li>Launch LSEG Workspace, type in your AppKey and click Connect</li>
+</ul>
+
+<div>
+	App Key: <input id="APPKEY" type="text" placeholder="App Key for Workspace" size="50"/>
+	<input type="button" onclick="connect()" value="Connect"/>
+</div>
+<br/>
+<div>
+	<p>Request Data:</p>
+	<div>
+		<input id="Sym_RT" type="text" placeholder="RIC Code" value="CAD=" />
+		<input type="button" onclick="snapshot()" value="Get Snapshot" />
+	</div>
+	<div>
+		<input id="Sym_ST" type="text" placeholder="RIC Code" value="EUR=" />
+		<input type="button" onclick="streaming()" value="Start Streaming" />
+	</div>
+	<div>
+		<input id="Sym_Fun" type="text" placeholder="RIC Code" value="GOOGL.O" />
+		<input type="button" onclick="fundamental()" value="Get Fundamental" />
+	</div>
+	<div>
+		<input id="Sym_His" type="text" placeholder="RIC Code" value="IBM.N" />
+		<input type="button" onclick="historical()" value="Get History" />
+	</div>
+</div>
+
+
+<div class="container">
+	<hr/>
+	<div id="log"></div>
+</div>
+
+
+<script>
+(function()	{
+	// Global Variables
+	const $log = document.getElementById("log");
+	const {Session} = datalib;
+	const {config} = datalib;
+	const {Pricing} = datalib;
+	const {FundamentalAndReference} = datalib;
+	const {HistoricalPricing} = datalib;
+
+	var session;
+
+	// enable debug messages from the LD Lib
+	// config.set('logs.level', 'DEBUG');
+
+	var log = function(message)	{
+		var dispStr = message;
+		if(typeof message !== "string")	{
+			// object, print all the fields of one item
+			dispStr = '<table><tr><th>Field</th><th>Data</th></tr>'
+			for(var p in message)
+				dispStr += '<tr><td>' + p + '</td><td>' + message[p] + '</td></tr>';
+			dispStr += '</table>';
+		}
+
+		console.log(dispStr);
+		$log.innerHTML += dispStr + "<br/>";
+		// scroll to bottom
+		$log.scrollTop = $log.scrollHeight;
+	};
+
+
+
+	var connect = async function()	{
+		ak = document.getElementById("APPKEY").value;
+		if(ak == "")
+			log("No AppKey provided");
+
+		// create the session object
+		session = Session.Desktop.Definition({
+			appKey: ak,
+			appName: 'MyApp',
+		}).getSession();
+
+		log("Connecting to Workspace...");
+
+		for(var port = 9000; port < 9010; port++)	{
+			log(`Trying port ${port}`);
+
+			config.set('sessions.desktop.default-session.base-url', `http://127.0.0.1:${port}`)
+			// scan a range of ports for Workspace proxy
+			try {
+				// open the session
+				await session.open();
+				log('Successfully connected!');
+				break;
+			}
+			catch (exp) {
+				if(exp.message)
+					log(`&nbsp;&nbsp;&nbsp;${exp.message}`)
+
+				if(exp.data)	{
+					log('*** Error: Unable to connect to Workspace')
+					log(`&nbsp;&nbsp;&nbsp;Code: ${exp.data.code}, Message: ${exp.data.message}`)
+					break;
+				}
+			}
+		}
+	};
+
+
+
+	var checkSession = function()	{
+		if(session && session.state == "Opened" )
+			return true;
+		else	{
+			log("Session not open - Connect to Workspace first!");
+			return false;
+		}
+	}
+
+
+
+	var snapshot = async function()	{
+		if(!checkSession())
+			return;
+
+		sym = document.getElementById("Sym_RT").value;
+		if(sym == "")	{
+			log("No RIC provided");
+			return;
+		}
+
+		log(`Getting pricing data for ${sym}`);
+
+		// specify a list of items and fields to retrieve a snapshot of prices
+		const pricingDefinition = Pricing.Definition({
+			universe: [sym],
+			fields: ['DSPLY_NAME', 'BID', 'ASK', 'OPEN_PRC', 'PCTCHNG'],
+			extendedParams: {
+				QoS: {
+					Rate: 'TimeConflated',
+					RateInfo: 10000
+				}
+			}
+		});
+
+		const stream = pricingDefinition.getStream(session);
+		// open the stream in snapshot mode
+		await stream.open({withUpdates: false});
+
+		log('');
+		log(`Realtime data for ${sym}:`);
+		log(stream.getFields(sym));
+	}
+
+
+
+	var streaming = async function()	{
+		if(!checkSession())
+			return;
+
+		sym = document.getElementById("Sym_ST").value;
+		if(sym == "")	{
+			log("No RIC provided");
+			return;
+		}
+
+		log(`Opening pricing stream for ${sym}`);
+
+		// specify a list of items and fields to retrieve a snapshot of prices
+		const pricingDefinition = Pricing.Definition({
+			universe: [sym],
+			fields: ['DSPLY_NAME', 'BID', 'ASK', 'OPEN_PRC', 'PCTCHNG'],
+			extendedParams: {
+				QoS: {
+					Rate: 'TimeConflated',
+					RateInfo: 10000
+				}
+			}
+		});
+
+		const stream = pricingDefinition.getStream(session);
+
+		// attach event listeners to the stream
+		stream.onRefresh((refresh, instrument) => log(`Refresh for: ${instrument}:`, refresh))
+			.onUpdate((update, instrument) => log(instrument, update))
+			.onStatus((status, instrument) => log(`Status for: ${instrument}:`, status))
+			.onComplete(() => log('Stream refresh complete'))
+			.onError(err => log(err));
+
+		// open the stream in streaming mode
+		await stream.open();
+		// run the example for 20 seconds
+		await new Promise(res => setTimeout(res, 20000));
+		// close the open stream
+		log('Closing the open stream');
+		await stream.close();
+	}
+
+
+
+	var fundamental = async function()	{
+		if(!checkSession())
+			return;
+
+		sym = document.getElementById("Sym_Fun").value;
+		if(sym == "")	{
+			log("No RIC provided");
+			return;
+		}
+
+		log(`Getting fundamental data for ${sym}`);
+
+		const fund = FundamentalAndReference.Definition(sym, ['TR.PriceClose', 'TR.Volume', 'TR.PriceLow']);
+		const resp = await fund.getData(session);
+
+		log('');
+		log(`Fundamental data for ${sym}:`);
+		log(resp.data.table[sym]);
+	}
+
+
+
+	var historical = async function()	{
+		if(!checkSession())
+			return;
+
+		sym = document.getElementById("Sym_His").value;
+		if(sym == "")	{
+			log("No RIC provided");
+			return;
+		}
+
+		log(`Getting historical data for ${sym}`);
+
+		const request1 = HistoricalPricing.Events.Definition({
+			universe: sym,
+			eventTypes: ['trade'],
+			fields: ['DATE_TIME', 'EVENT_TYPE', 'TRDPRC_1', 'TRDVOL_1']
+		});
+
+		const resp = await request1.getData(session);
+
+		log('');
+		if(resp.data.table)	{
+			log(`Historical data for ${sym}:`);
+			for(var h in resp.data.table)
+				log(resp.data.table[h]);
+		}
+		else
+			log('No data received');
+	}
+
+
+	log("Launch the LSEG Workspace, type in the APPKey and click Connect");
+	window.connect = connect;
+	window.snapshot = snapshot;
+	window.fundamental = fundamental;
+	window.historical = historical;
+	window.streaming = streaming;
+})();
+
+
+</script>
+
+</body>
+</html>
