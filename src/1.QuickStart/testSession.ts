@@ -13,6 +13,7 @@ const session = getSession();
 //const session = getSession('platform');
 //const session = getSession('desktop');
 //const session = getSession('container');
+//const session = getSession('desktopDirect');
 
 // rest of the code remains unchanged for each session type
 (async () => {

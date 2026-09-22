@@ -5,13 +5,13 @@
 		  "name": "Current TS File",
 		  "type": "node",
 		  "request": "launch",
+		  "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/tsx",
 		  "args": ["${relativeFile}"],
-		  "runtimeArgs": ["-r", "ts-node/register"],
-		  "cwd": "${workspaceRoot}",
+		  "cwd": "${workspaceFolder}",
 		  "protocol": "inspector",
 		  "internalConsoleOptions": "openOnSessionStart",
 		  "sourceMaps": true,
 		  "outputCapture": "std"
-	  }
+	  	}
 	]
 }

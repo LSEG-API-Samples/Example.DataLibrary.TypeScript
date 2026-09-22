@@ -1,0 +1,30 @@
+{
+  "name": "example.datalibrary.typescript",
+  "version": "1.0.0",
+  "description": "The following series of examples demonstrate how to programmatically access content residing within the LSEG Data Platform using a single, ease of use API called the LSEG Data Library for TypeScript. The platform refers to the layer of data services providing both streaming and non-streaming content serving different clients, from the simple desktop interface to the enterprise application.",
+  "homepage": "https://github.com/LSEG-API-Samples/Example.DataLibrary.TypeScript#readme",
+  "bugs": {
+    "url": "https://github.com/LSEG-API-Samples/Example.DataLibrary.TypeScript/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LSEG-API-Samples/Example.DataLibrary.TypeScript.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "example": "tsx"
+  },
+  "dependencies": {
+    "@azure/msal-node": "^6.0.1",
+    "@azure/msal-node-extensions": "^5.5.1",
+    "open": "^11.0.4"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2",
+    "typescript": "^7.0.2"
+  }
+}
